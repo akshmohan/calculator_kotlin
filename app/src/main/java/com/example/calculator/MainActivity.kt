@@ -6,38 +6,28 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import com.example.calculator.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() , View.OnClickListener {
 
-    lateinit var btnAdd: Button
-    lateinit var btnSubtract: Button
-    lateinit var btnMultiply: Button
-    lateinit var btnDivide: Button
-    lateinit var etA : EditText
-    lateinit var etB : EditText
-    lateinit var resultTv: TextView
+    lateinit var binding : ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        btnAdd = findViewById(R.id.btn_add)
-        btnSubtract = findViewById(R.id.btn_subtraction)
-        btnMultiply = findViewById(R.id.btn_multiplication)
-        btnDivide = findViewById(R.id.btn_division)
-        etA = findViewById(R.id.et_a)
-        etB = findViewById(R.id.et_b)
-        resultTv = findViewById(R.id.result_tv)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        btnAdd.setOnClickListener(this)
-        btnSubtract.setOnClickListener(this)
-        btnMultiply.setOnClickListener(this)
-        btnDivide.setOnClickListener(this)
+
+        binding.btnAdd.setOnClickListener(this)
+        binding.btnSubtraction.setOnClickListener(this)
+        binding.btnMultiplication.setOnClickListener(this)
+        binding.btnDivision.setOnClickListener(this)
 
     }
 
     override fun onClick(v: View?) {
-        var a = etA.text.toString().toDouble()
-        var b = etB.text.toString().toDouble()
+        var a = binding.etA.text.toString().toDouble()
+        var b = binding.etB.text.toString().toDouble()
         var result = 0.0
         when(v?.id){
             R.id.btn_add -> {
@@ -53,6 +43,6 @@ class MainActivity : AppCompatActivity() , View.OnClickListener {
                 result = a / b
             }
         }
-        resultTv.text = "Result is $result"
+        binding.resultTv.text = "Result is $result"
     }
 }
